@@ -1,30 +1,19 @@
 import React, { Component } from 'react';
+import './Snippet.css'
 
 export default class Snippet extends Component {
   state = { 
-    cards : []
-  }
-
-  componentDidMount() {
-    fetch('localhost:3000/input', {
-      method: "INPUT",
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-      input: 'queer'
-      })
-    })
-    .then(response => response.json())
-    .then(data => this.setState({cards : data}))
   }
 
   render() { 
-    return ( 
-      <React.Fragment>
-        {this.state.cards}
-      </React.Fragment>
+    return (
+      <div className='snippet'> 
+        <p className="snippetTitle"> { this.props.title } </p>
+        <p className="snippetTitle"> by { this.props.author } </p>
+        <p> { this.props.line1 } </p>
+        <p> { this.props.line2 } </p>
+        <p> { this.props.line3 } </p>
+      </div>
     )
   }
 }

@@ -1,0 +1,16 @@
+.snippet {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  margin-left: 3%;
+  margin-right: 1%;
+}
+
+.snippet > p {
+  font-size: 12px;
+}
+
+.snippetTitle {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}
