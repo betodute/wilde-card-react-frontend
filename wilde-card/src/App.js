@@ -4,11 +4,13 @@ import './App.css';
 
 export default class App extends Component {
   state = { 
+    wordInput: "",
     snippets: []
    }
 
   handleSubmit = (event) => {
     event.preventDefault()
+    this.setState({ wordInput: document.querySelector("#wordInput").value })
     fetch('http://localhost:3000/cards/input', {
       method: "POST",
       headers: {
@@ -20,7 +22,6 @@ export default class App extends Component {
       })
     })
     .then(response => response.json())
-    // .then(data => console.log(data))
     .then(data => this.setState({snippets: data}))
   }
 
@@ -33,6 +34,7 @@ export default class App extends Component {
           line1={ snippet["context"][0] }
           line2={ snippet["context"][1] }
           line3={ snippet["context"][2] }
+          wordInput={ this.state.wordInput }
         />
       )
     })

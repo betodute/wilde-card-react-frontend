@@ -12,7 +12,8 @@ export default class Card extends Component {
         title={ this.props.title }
         line1={ this.props.line1 }
         line2={ this.props.line2 }
-        line3={ this.props.line3 } 
+        line3={ this.props.line3 }
+        wordInput={ this.props.wordInput } 
         />
       </div>
     );
