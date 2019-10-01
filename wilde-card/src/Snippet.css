@@ -13,6 +13,13 @@
   font-size: 14px;
   font-weight: bold;
   text-align: center;
+  text-transform: capitalize;
+}
+
+.snippetAuthor {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .wildeButton {

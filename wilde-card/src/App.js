@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
-import Card from './Card.js';
 import './App.css';
+
+//Components
+
+import User from './User.js'
+import Card from './Card.js';
+
+// * * * *  W I L D E    C A R D * * * * 
 
 export default class App extends Component {
   state = { 
     wordInput: "",
-    snippets: []
+    snippets: [],
+    userId: 0,
+    userName: ""
    }
 
-  handleSubmit = (event) => {
+  handleWordSubmit = (event) => {
     event.preventDefault()
+    this.pageLoadAnimation()
     this.setState({ wordInput: document.querySelector("#wordInput").value })
     fetch('http://localhost:3000/cards/input', {
       method: "POST",
@@ -22,6 +31,7 @@ export default class App extends Component {
       })
     })
     .then(response => response.json())
+    // .then(console.log)
     .then(data => this.setState({snippets: data}))
   }
 
@@ -40,14 +50,14 @@ export default class App extends Component {
     })
   }
 
+  pageLoadAnimation = () => {
+    console.log("Put Loading Page Animation Here")
+  }
+
   titleChange = () => {
-    let title = document.querySelector(".appTitle")
+    let t = document.querySelector(".appTitle")
     let value = document.querySelector("#wordInput").value
-    if (value.length) {
-      title.innerText = value
-    } else {
-      title.innerText = "wilde card"
-    }
+    value.length ? t.innerText = value : t.innerText = "wilde card"
   }
 
   render() { 
@@ -55,11 +65,16 @@ export default class App extends Component {
       <React.Fragment>
         <h1 className="appTitle"> wilde card </h1>
         <h3 className="appSubtitle"> a creativity application for writers </h3>
-          <form className="appForm" onSubmit={ this.handleSubmit }>
-            <label>
-              <input id="wordInput" type="text" name="word" placeholder="word" onChange={ this.titleChange } />
-            </label>
-              <input type="submit" value="submit" />
+          <form className="appForm userForm" onSubmit={ this.handleUserSubmit }>
+            <input id="userInput" type="text" name="name" placeholder="name" />
+            <input type="submit" value="submit" />
+          </form>
+        < User />
+        <br/>
+          <form className="appForm" onSubmit={ this.handleWordSubmit }>
+            <input id="wordInput" type="text" name="word" placeholder="word" 
+            onChange={ this.titleChange } />
+            <input type="submit" value="submit" />
           </form>
 
           <div className="mainContainer">
@@ -69,8 +84,4 @@ export default class App extends Component {
       </React.Fragment>
     );
   }
-
-  // Root Class Component Ends Here
-
 }
- 
